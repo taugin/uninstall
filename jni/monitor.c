@@ -20,14 +20,14 @@ void fileobserver(int fd, int wd, char * pkgname, char *report_url, int os_versi
         exit(1);
     }
     int exist = file_exist(pkgname);
-    LOGV("start observer file exist : %s", exist ? "true" : "false");
+    LOGD("start observer file exist : %s", exist ? "true" : "false");
     while(1) {
         memset(p_buf, 0, sizeof(struct inotify_event));
         size_t readBytes = read(fd, p_buf,
                 sizeof(struct inotify_event));
         LOGD("readBytes : %d", readBytes);
         int exist = file_exist(pkgname);
-        LOGV("file exist : %s", exist ? "true" : "false");
+        LOGD("file exist : %s", exist ? "true" : "false");
         if (exist) {
             sleep(5);
         } else {
